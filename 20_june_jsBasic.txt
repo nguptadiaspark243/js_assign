@@ -1,0 +1,5 @@
+Create a program to calculate compound interest using math object.
+my link- https://jsfiddle.net/u9hLs3zt/
+
+Create a program to create a date object and display the month name from it using switch-case statement.
+my link- https://jsfiddle.net/f49zq085/

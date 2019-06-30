@@ -1,0 +1,19 @@
+1)Returns a passed string with letters in alphabetical order
+my link- https://jsfiddle.net/69oj7qt0/
+2)
+write a java script function that accepts a string as a parameter and find the longest word within the string?
+my link-- https://jsfiddle.net/m7sahfcp/1/
+
+3)program to get the current date mm-dd-yyyy,mm/dd/yyyy
+my link- https://jsfiddle.net/y2w3rLgj/
+
+4) write a javascript program to find which 1st january is being sunday between 2000 and 2050.
+my link- https://jsfiddle.net/yeqzvjd6/2/
+
+5) to calculate days left untill next christmas?
+my link- https://jsfiddle.net/qjw73e56/
+
+6) to remove a character at the specified position of agiven string and return the new string?
+my link- https://jsfiddle.net/kjo76w3y/
+
+

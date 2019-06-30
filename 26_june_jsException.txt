@@ -1,0 +1,5 @@
+1) Create a program to ask the user for a number 5 times. Add the number to the already entered number. Display the result after the user has entered all the numbers. If the user enters a string, quit program after displaying the error.
+my link- https://jsfiddle.net/nog186sx/
+
+2) Create a program to ask the user for a number between 5 nad 10 Calculate its factorial by using recursion. If the validation criteria is not met, quit program after displaying the error.
+my link- https://jsfiddle.net/z3atnc2L/
