@@ -1,0 +1,159 @@
+<html>
+<head>
+  <style type="text/css">
+    table {
+      border-color: orange;
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 88%;
+      margin-left: 110px;
+    }
+
+    td,
+    th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+
+    th{
+      background-color: gray;
+    }
+
+    tr:nth-child(even) {
+      background-color: orange;
+    }
+
+    #name,
+    #subject,
+    #marks {
+      margin-top: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  Filter by Subject <select id="selectF">
+    <option value="All">All</option>
+    <option value="java">Java</option>
+    <option value="c#">C#</option>
+    <option value="Oracle">Oracle</option>
+  </select>
+
+  <table id="table">
+    <thead>
+      <tr>
+        <th>Student Name</th>
+        <th>Subject Name</th>
+        <th>Marks Obtained</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="table_body">
+    </tbody>
+  </table>
+  <br>
+  <input type="button" id="sort_name" value="Sort by Name">
+  <input type="button" id="sort_marks" value="Sort by Marks">
+  <p id="total"></p>
+  <br>
+  Student Name :- <input id="name" type="text" name="student">
+  <br>
+  Student Subject :-<input id="subject" type="text" name="subject" placeholder="Java/C#/Oracle">
+  <br>
+  Marks Obtained :- <input id="marks" type="number" name="marks" placeholder="marks in two digits">
+  <br>
+  <input type="button" id="add" value="Add Data">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+
+    $(document).ready(function () {
+      
+      // filter
+      $("select").change(function () {
+        var selectedSubject = $(this).children("option:selected").val().toUpperCase();
+        // alert("You have selected the" + selectedSubject);
+        if (selectedSubject != 'ALL') {
+          $('#table tbody tr').hide().filter(function () {
+            return $(this).find('td:eq(1)').html().toUpperCase() == selectedSubject;
+          }).show()
+        }
+        else {
+          $('#table tbody tr').show();
+        }
+      });
+
+      // add row and column
+      $("#add").click(function () {
+        var name = $("#name").val();
+        var subject = $("#subject").val();
+        var marks = $("#marks").val();
+        var info = "<tr><td>" + name + "</td><td>" + subject + "</td><td>" + marks + "</td><td><input type='button' class= 'delete' value= 'Delete'></td></tr>";
+        $("table tbody").append(info);
+        $("#name").val("");
+        $("#subject").val("");
+        $("#marks").val("");
+      });
+
+      //delete row
+      $("#table").on('click', '.delete', function () {
+        $(this).parent().parent().remove();
+      });
+
+      //total row after adding row;
+      $('#add').click(function () {
+        var rowcount = $('table tr').length - 1;
+        document.getElementById("total").innerHTML = "Total records=" + rowcount;
+      });
+
+      // total row after deleting row
+      $("#table").on('click', '.delete', function () {
+        var rowcount = $('table tr').length - 1;
+        document.getElementById("total").innerHTML = "Total records=" + rowcount;
+      });
+
+      //sorting by name
+      $("#sort_name").click(function () {
+        var rows = $('#table tbody  tr').get();
+        rows.sort(function (a, b) {
+          var A = $(a).children('td').eq(0).text().toUpperCase();
+          var B = $(b).children('td').eq(0).text().toUpperCase();
+          if (A < B) {
+            return -1;
+          }
+          if (A > B) {
+            return 1;
+          }
+          return 0;
+        });
+        $.each(rows, function (index, row) {
+          $('#table').children('tbody').append(row);
+        });
+      });
+
+      // sorting by marks
+      $("#sort_marks").click(function () {
+        var rows = $('#table tbody  tr').get();
+        rows.sort(function (a, b) {
+          var A = $(a).children('td').eq(2).text();
+          var B = $(b).children('td').eq(2).text();
+          if (A < B) {
+            return -1;
+          }
+          if (A > B) {
+            return 1;
+          }
+          return 0;
+        });
+        $.each(rows, function (index, row) {
+          $('#table').children('tbody').append(row);
+        });
+      });
+    });
+  </script>
+
+</body>
+
+</html>

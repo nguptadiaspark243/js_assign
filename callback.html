@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src = "https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+	<style type="text/css">
+		body{
+			background-color: cyan;
+		}
+	</style>
+
+	<title>Callback</title>
+</head>
+
+<body>
+
+<form id="back">
+	<input type="text" name="text1" id="text1"><br><br>
+	<input type="text" name="text2" id="text2"><br><br>
+	<input type="text" name="text3"><br><br>
+	<input type="text" name="text4">
+</form>
+
+<br><input type="radio" name="color1" value="red" > Red<br>
+<input type="radio" name="color1" value="green" id="green1"> Green<br>
+<input type="radio" name="color1" value="blue"> Blue<br>
+<br><button type="button" id="button">Add Color</button>
+
+<script type="text/javascript">
+	
+	$(document).ready(function(){
+        $("#button").on('click', this, function(){
+        	var radioValue = $("input[name='color1']:checked").val();
+			$('input[type="text"]').show();
+            if(radioValue == "red"){
+				$("#text1").fadeOut(1, function () {
+            	$("#text1").fadeIn(2000, function(){
+            		$("#back").children().css("background-color", "red");
+            	});
+			});
+            }
+            if(radioValue == "green")
+            { 
+            	$("#green1").slideToggle("slow", function(){
+            		$("#back").children().css("background-color", "green");
+            	});
+            }
+            if((radioValue == "blue"))
+			{
+            	$("#text1,#text2").hide("slow", function(){
+            		$("#back").children().css("background-color", "blue");
+            	});
+
+            }
+            
+        });
+        
+    });
+</script>
+</body>
+</html>
