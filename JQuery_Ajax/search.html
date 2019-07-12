@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <title>Search JSON data</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        <h1 align = "center">Employe Data</h1><br>
+        <div align = "center">
+            <input type="text" id="search" name="search" placeholder="search employee data" class="form-control">
+        </div>
+        <ul class="list" id="data"></ul>
+        <br>
+        </div>
+        <script>
+            $(document).ready(function(){
+                $.ajaxSetup({cache:false});
+                $('#search').keyup(function(){
+                    $('#data').html('');
+                    var searchField = $("#search").val();
+                    var expression = new RegExp(searchField, "i");
+                    $.getJSON('Empdata.json', function(data){
+                        $.each(data, function(key, value){
+                            if(value.name.search(expression)!= -1 || value.location.search(expression)!= -1)
+                            {
+                                $('#data').append('<li class="list-item link-class"><img src="'+value.image+'" height="40" width="40" class="img-thumbnail" /> '+value.name+' | <span class="text-muted">'+value.location+'</span></li>');
+                            }
+                        });
+                    });
+                });
+                $('#data').on('click', 'li', function(){
+                    var clickText = $(this).text().split('|');
+                    $('#search').val($.trim(clickText[0]));
+                    $("#result").html('');
+                });
+
+            });
+        </script>
+    </body>
+</html>
